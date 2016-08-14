@@ -1,0 +1,36 @@
+---
+
+- hosts: nexus
+  remote_user: vagrant
+  vars:
+    software_dir: "/home/brian/software"
+    nexus_version: "2.13.0-01"
+  tasks:
+    - name: "Creating Nexus group"
+      group:
+        name: "nexus"
+        state: "present"
+      become: true
+      become_user: "root"
+
+    - name: "Creating Nexus user"
+      user:
+        name: "nexus"
+        groups: "nexus"
+        state: "present"
+      become: true
+      become_user: "root"
+
+    - name: "Installing Nexus {{ nexus_version }}"
+      unarchive:
+        src: "{{ software_dir }}/nexus/nexus-{{ nexus_version }}-bundle.tar.gz"
+        dest: "/opt"
+        owner: "nexus"
+        group: "nexus"
+      become: true
+      become_user: "root"
+
+
+
+#  roles:
+#    - nexus
