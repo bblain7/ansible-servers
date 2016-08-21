@@ -71,7 +71,8 @@ Vagrant.configure("2") do |config|
   
   
   config.vm.define "nexus" do |nexus|
-    nexus.vm.box = "ubuntu/trusty64"
+    nexus.vm.box = "brian/ubuntu-server-16.04"
+#    nexus.vm.box = "ubuntu/trusty64"
     nexus.vm.hostname = "nexus"
 
     nexus.vm.network :private_network, ip: "192.152.0.100" 
