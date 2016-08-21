@@ -4,11 +4,7 @@
 DIR=$(dirname "$(readlink -f "$0")")
 cd ${DIR}
 
-SOFTWARE_DIR="${HOME}/software"
 PACKER_DIR="./packer"
-
-apt-get -y install ansible packer vagrant
-
 
 
 packer build ${PACKER_DIR}/ubuntu-16.04.json || {
