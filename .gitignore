@@ -1,3 +1,6 @@
+# ignoring ansible roles because they should be pulled in from ansible galaxy
+ansible/roles
+
 
 # Ansible
 # -------------------------------------
@@ -16,11 +19,6 @@
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
-
-
-# Packer
-# -------------------------------------
-packer_cache/
 
 
 # Vagrant

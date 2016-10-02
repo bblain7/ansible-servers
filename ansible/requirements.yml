@@ -1,0 +1,8 @@
+---
+
+# Java
+- src: "geerlingguy.java"
+
+# Sonatype Nexus
+- src: "https://gitlab.com/brian.blain/ansible-nexus.git"
+  scm: "git"

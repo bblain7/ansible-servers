@@ -70,20 +70,20 @@ Vagrant.configure("2") do |config|
   # SHELL
   
   
-  config.vm.define "nexus" do |nexus|
-    nexus.vm.box = "brian/ubuntu-server-16.04"
-#    nexus.vm.box = "ubuntu/trusty64"
-    nexus.vm.hostname = "nexus"
+  config.vm.define "nexus" do |config|
+    config.vm.box = "brian/ubuntu-server-16.04"
+    config.vm.hostname = "nexus"
 
-    nexus.vm.network :private_network, ip: "192.152.0.100" 
+    config.vm.network :private_network, ip: "192.152.0.100"
  
-    nexus.vm.provider "virtualbox" do |virtualbox|
+    config.vm.provider "virtualbox" do |virtualbox|
       virtualbox.name = "nexus"
     end
   
-    nexus.vm.provision "ansible" do |ansible|
+    config.vm.provision "ansible" do |ansible|
       ansible.verbose = "v"
       ansible.playbook = "ansible/nexus.yml"
+      ansible.galaxy_role_file = "ansible/requirements.yml"
     end
   end
   
