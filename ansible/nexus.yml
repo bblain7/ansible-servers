@@ -1,11 +1,8 @@
 ---
 
 - hosts: "nexus"
-  remote_user: "vagrant"
   become: true
   become_user: "root"
-  vars:
-    nexus_archive_dir: "/home/brian/software/nexus"
   roles:
     - "ansible-nexus"
 

@@ -3,5 +3,10 @@
 ansible_ssh_user=vagrant
 ansible_ssh_pass=vagrant
 
+
 [nexus]
 192.152.0.100
+
+
+[jenkins]
+192.152.0.101

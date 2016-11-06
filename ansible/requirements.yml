@@ -6,3 +6,8 @@
 # Sonatype Nexus
 - src: "https://gitlab.com/brian.blain/ansible-nexus.git"
   scm: "git"
+
+# Jenkins
+# fork of https://github.com/ICTO/ansible-jenkins
+- src: "https://gitlab.com/brian.blain/ansible-jenkins.git"
+  scm: "git"

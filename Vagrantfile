@@ -1,6 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+boxes = [
+  {
+    :name => "nexus",
+    :ip => "192.152.0.100"
+  },
+  {
+    :name => "jenkins",
+    :ip => "192.152.0.101"
+  }
+]
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -69,26 +80,23 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   
-  
-  config.vm.define "nexus" do |config|
-    config.vm.box = "brian/ubuntu-server-16.04"
-    config.vm.hostname = "nexus"
+  boxes.each do |box|
+    config.vm.define box[:name] do |config|
+      config.vm.box = ENV['USER'] + "/ubuntu-server-16.04"
+      config.vm.hostname = box[:name]
 
-    config.vm.network :private_network, ip: "192.152.0.100"
+      config.vm.network :private_network, ip: box[:ip]
  
-    config.vm.provider "virtualbox" do |virtualbox|
-      virtualbox.name = "nexus"
-    end
+      config.vm.provider "virtualbox" do |virtualbox|
+        virtualbox.name = box[:name]
+      end
   
-    config.vm.provision "ansible" do |ansible|
-      ansible.verbose = "v"
-      ansible.playbook = "ansible/nexus.yml"
-      ansible.galaxy_role_file = "ansible/requirements.yml"
+      config.vm.provision "ansible" do |ansible|
+        ansible.verbose = "v"
+        ansible.playbook = "ansible/" + box[:name] + ".yml"
+        ansible.galaxy_role_file = "ansible/requirements.yml"
+      end
     end
   end
   
-  #config.vm.define "sonarqube" do |sonarqube|
-  #  sonarqube.vm.box = "ubuntu/trusty64"
-  #  sonarqube.vm.hostname = "sonarqube"
-  #end
 end
