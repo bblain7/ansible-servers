@@ -10,3 +10,7 @@ ansible_ssh_pass=vagrant
 
 [jenkins]
 192.152.0.101
+
+
+[sonarqube]
+192.152.0.102

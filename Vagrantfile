@@ -9,6 +9,10 @@ boxes = [
   {
     :name => "jenkins",
     :ip => "192.152.0.101"
+  },
+  {
+    :name => "sonarqube",
+    :ip => "192.152.0.102"
   }
 ]
 

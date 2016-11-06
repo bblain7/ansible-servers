@@ -11,3 +11,7 @@
 # fork of https://github.com/ICTO/ansible-jenkins
 - src: "https://gitlab.com/brian.blain/ansible-jenkins.git"
   scm: "git"
+
+# Sonarqube
+- src: "https://gitlab.com/brian.blain/ansible-sonarqube.git"
+  scm: "git"
