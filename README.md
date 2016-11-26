@@ -34,6 +34,23 @@ Eventually, some of the servers may be dependent on other servers. The README fi
 - Vagrant
 - Ansible
 
+# Developer Environment
+
+For the development environment, I use a combination of Eclipse for Java development and Atom for web development. Here are some helpful plugins that you might want to install to aide in development.
+
+## Eclipse
+
+- sonarlint
+- TODO (cant think of them off the top of my head atm)
+
+## Atom
+
+- highlight-selected
+- file-icons
+- git-plus
+- project-manager
+- open-recent
+
 
 As a side note I wasted some time with Vagrant on Windows 10. I would just use Linux OS to make it easier.
 
