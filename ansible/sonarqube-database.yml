@@ -1,0 +1,9 @@
+---
+
+- hosts: "sonarqube-database"
+  become: true
+  become_user: "root"
+  vars_files:
+    - "vars/sonarqube.yml"
+  roles:
+    - "geerlingguy.postgresql"

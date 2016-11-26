@@ -1,20 +1,28 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-boxes = [
-  {
+box_baseline = ENV["USER"] + "/ubuntu-server-16.04"
+ansible_requirements = "ansible/requirements.yml"
+
+# dependency order matters
+boxes = [ {
     :name => "nexus",
-    :ip => "192.152.0.100"
-  },
-  {
-    :name => "jenkins",
-    :ip => "192.152.0.101"
-  },
-  {
+    :ip => "192.152.0.100",
+    :playbook => "ansible/nexus.yml"
+  }, {
+    :name => "sonarqube-database",
+    :ip => "192.152.0.103",
+    :playbook => "ansible/sonarqube-database.yml"
+  }, {
     :name => "sonarqube",
-    :ip => "192.152.0.102"
-  }
-]
+    :ip => "192.152.0.102",
+    :playbook => "ansible/sonarqube.yml"
+  }, {
+    :name => "jenkins",
+    :ip => "192.152.0.101",
+    :playbook => "ansible/jenkins.yml"
+  }]
+
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -86,19 +94,18 @@ Vagrant.configure("2") do |config|
   
   boxes.each do |box|
     config.vm.define box[:name] do |config|
-      config.vm.box = ENV['USER'] + "/ubuntu-server-16.04"
+      config.vm.box = box_baseline
       config.vm.hostname = box[:name]
-
       config.vm.network :private_network, ip: box[:ip]
- 
+
       config.vm.provider "virtualbox" do |virtualbox|
         virtualbox.name = box[:name]
       end
   
       config.vm.provision "ansible" do |ansible|
         ansible.verbose = "v"
-        ansible.playbook = "ansible/" + box[:name] + ".yml"
-        ansible.galaxy_role_file = "ansible/requirements.yml"
+        ansible.playbook = box[:playbook]
+        ansible.galaxy_role_file = ansible_requirements
       end
     end
   end

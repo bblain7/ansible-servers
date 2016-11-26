@@ -3,15 +3,19 @@
 # Java
 - src: "geerlingguy.java"
 
+# Postgres
+- src: "geerlingguy.postgresql"
+
+
 # Sonatype Nexus
-- src: "https://gitlab.com/brian.blain/ansible-nexus.git"
+- src: "git@gitlab.com:brian.blain/ansible-nexus.git"
   scm: "git"
 
 # Jenkins
 # fork of https://github.com/ICTO/ansible-jenkins
-- src: "https://gitlab.com/brian.blain/ansible-jenkins.git"
+- src: "git@gitlab.com:brian.blain/ansible-jenkins.git"
   scm: "git"
 
 # Sonarqube
-- src: "https://gitlab.com/brian.blain/ansible-sonarqube.git"
+- src: "git@gitlab.com:brian.blain/ansible-sonarqube.git"
   scm: "git"

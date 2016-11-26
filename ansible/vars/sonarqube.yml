@@ -1,0 +1,11 @@
+
+# Sonarqube variables
+
+
+# Postgres variables 
+postgresql_databases:
+  - name: "sonarqube"
+    port: "5432"
+postgresql_users:
+  - name: "sonarqube"
+    password: "sonarqube"
