@@ -50,6 +50,7 @@ For the development environment, I use a combination of Eclipse for Java develop
 - git-plus
 - project-manager
 - open-recent
+- atom-beautify
 
 
 As a side note I wasted some time with Vagrant on Windows 10. I would just use Linux OS to make it easier.
