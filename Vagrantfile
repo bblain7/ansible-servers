@@ -1,26 +1,30 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-box_baseline = ENV["USER"] + "/ubuntu-server-16.04"
+playbook_dir = "ansible/playbooks"
 ansible_requirements = "ansible/requirements.yml"
 
 # dependency order matters
 boxes = [ {
     :name => "nexus",
     :ip => "192.152.0.100",
-    :playbook => "ansible/nexus.yml"
+    :playbook => playbook_dir + "/nexus.yml",
+    :box => ENV["USER"] + "/ubuntu-server-17.04"
   }, {
     :name => "sonarqube-database",
     :ip => "192.152.0.103",
-    :playbook => "ansible/sonarqube-database.yml"
+    :playbook => playbook_dir + "/sonarqube-database.yml",
+    :box => ENV["USER"] + "/ubuntu-server-17.04"
   }, {
     :name => "sonarqube",
     :ip => "192.152.0.102",
-    :playbook => "ansible/sonarqube.yml"
+    :playbook => playbook_dir + "/sonarqube.yml",
+    :box => ENV["USER"] + "/ubuntu-server-17.04"
   }, {
     :name => "jenkins",
     :ip => "192.152.0.101",
-    :playbook => "ansible/jenkins.yml"
+    :playbook => playbook_dir + "/jenkins.yml",
+    :box => ENV["USER"] + "/ubuntu-server-17.04"
   }]
 
 
@@ -91,17 +95,17 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  
+
   boxes.each do |box|
     config.vm.define box[:name] do |config|
-      config.vm.box = box_baseline
+      config.vm.box = box[:box]
       config.vm.hostname = box[:name]
       config.vm.network :private_network, ip: box[:ip]
 
-      config.vm.provider "virtualbox" do |virtualbox|
-        virtualbox.name = box[:name]
+      config.vm.provider "virtualbox" do |provider|
+        provider.name = box[:name]
       end
-  
+
       config.vm.provision "ansible" do |ansible|
         ansible.verbose = "v"
         ansible.playbook = box[:playbook]
@@ -109,5 +113,5 @@ Vagrant.configure("2") do |config|
       end
     end
   end
-  
+
 end

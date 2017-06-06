@@ -1,7 +1,0 @@
----
-
-- hosts: "sonarqube"
-  become: true
-  become_user: "root"
-  roles:
-    - "ansible-sonarqube"
