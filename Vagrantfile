@@ -1,30 +1,31 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-playbook_dir = "ansible/playbooks"
+ansible_playbook_dir = "ansible/playbooks"
 ansible_requirements = "ansible/requirements.yml"
+ansible_roles_dir = "ansible/roles"
 
 # dependency order matters
 boxes = [ {
     :name => "nexus",
     :ip => "192.152.0.100",
-    :playbook => playbook_dir + "/nexus.yml",
-    :box => ENV["USER"] + "/ubuntu-server-17.04"
+    :playbook => ansible_playbook_dir + "/nexus.yml",
+    :box => ENV["USER"] + "/ubuntu-server-16.04"
   }, {
     :name => "sonarqube-database",
     :ip => "192.152.0.103",
-    :playbook => playbook_dir + "/sonarqube-database.yml",
-    :box => ENV["USER"] + "/ubuntu-server-17.04"
+    :playbook => ansible_playbook_dir + "/sonarqube-database.yml",
+    :box => ENV["USER"] + "/ubuntu-server-16.04"
   }, {
     :name => "sonarqube",
     :ip => "192.152.0.102",
-    :playbook => playbook_dir + "/sonarqube.yml",
-    :box => ENV["USER"] + "/ubuntu-server-17.04"
+    :playbook => ansible_playbook_dir + "/sonarqube.yml",
+    :box => ENV["USER"] + "/ubuntu-server-16.04"
   }, {
     :name => "jenkins",
     :ip => "192.152.0.101",
-    :playbook => playbook_dir + "/jenkins.yml",
-    :box => ENV["USER"] + "/ubuntu-server-17.04"
+    :playbook => ansible_playbook_dir + "/jenkins.yml",
+    :box => ENV["USER"] + "/ubuntu-server-16.04"
   }]
 
 
@@ -110,6 +111,7 @@ Vagrant.configure("2") do |config|
         ansible.verbose = "v"
         ansible.playbook = box[:playbook]
         ansible.galaxy_role_file = ansible_requirements
+	ansible.galaxy_roles_path = ansible_roles_dir
       end
     end
   end

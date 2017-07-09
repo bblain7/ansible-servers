@@ -4,15 +4,7 @@
   become: true
   become_user: "root"
   roles:
-    - "ansible-jenkins"
-  vars:
-    plugins:
-      - "ldap"
-      - "greenballs"
-    port: 8081
-    prefix: "/"
-    email:
-      smtp_host: "mail.example.com"
-      smtp_ssl: true
-      default_email_suffix: "@example.com"
-    java_version: "openjdk-8" 
+  - role: "geerlingguy.jenkins"
+    vars:
+     - jenkins_plugins:
+       - "greenballs"
